@@ -26,7 +26,6 @@ private SensorEventListener sv; //sv
         sysmanager=(SensorManager) getSystemService(Context.SENSOR_SERVICE);
         if (sysmanager!=null)
             sensor =sysmanager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
-
         sv = new SensorEventListener ()
         {
             @Override
@@ -35,7 +34,6 @@ private SensorEventListener sv; //sv
                 float[] rotationMatrix = new float[16];
                 SensorManager.getRotationMatrixFromVector(rotationMatrix, event.values);
                 float[] rem = new float[16];
-               
                 SensorManager.remapCoordinateSystem(rotationMatrix,
                         SensorManager.AXIS_X,
                         SensorManager.AXIS_Z,
@@ -44,7 +42,7 @@ private SensorEventListener sv; //sv
                 SensorManager.getOrientation(rem,orient);
                 for (int i =0; i<3; i++) orient[i]=(float) (Math.toDegrees(orient[i]));
                 txt.setText(String.valueOf((int)orient[2]));
-                imgV.setRotationX(orient[2]);
+                imgV.setRotationX(orient[1]);
                 imgV.setRotationY(orient[2]);
             }
             @Override
