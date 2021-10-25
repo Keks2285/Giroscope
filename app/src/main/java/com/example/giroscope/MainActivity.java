@@ -43,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
                 float orient[] = new float[3];
                 SensorManager.getOrientation(rem,orient);
                 for (int i =0; i<3; i++) orient[i]=(float) (Math.toDegrees(orient[i]));
-                txt.setText("X:"+String.valueOf((int)orient[2]));
-                txt2.setText("Y:"+String.valueOf((int)orient[1]));
-                imgV.setRotationY(orient[1]);
-                imgV.setRotationX(orient[2]);
+                txt.setText("X:"+String.valueOf((int)orient[1]));
+                txt2.setText("Y:"+String.valueOf((int)orient[2]));
+                imgV.setRotationY(orient[2]);
+                imgV.setRotationX(orient[1]);
             }
             @Override
             public void onAccuracyChanged(Sensor sensor, int i) {}
