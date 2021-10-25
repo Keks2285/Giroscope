@@ -12,16 +12,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-private Sensor sensor;
-private SensorManager sysmanager; //sysmanager
-private ImageView imgV;
-private TextView txt;
-private SensorEventListener sv; //sv
+    private Sensor sensor;
+    private SensorManager sysmanager; //sysmanager
+    private ImageView imgV;
+    private TextView txt;
+    private TextView txt2;
+    private SensorEventListener sv; //sv
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         txt = findViewById(R.id.TV);
+        txt2 = findViewById(R.id.TV2);
         imgV= findViewById(R.id.img);
         sysmanager=(SensorManager) getSystemService(Context.SENSOR_SERVICE);
         if (sysmanager!=null)
@@ -41,9 +43,10 @@ private SensorEventListener sv; //sv
                 float orient[] = new float[3];
                 SensorManager.getOrientation(rem,orient);
                 for (int i =0; i<3; i++) orient[i]=(float) (Math.toDegrees(orient[i]));
-                txt.setText(String.valueOf((int)orient[2]));
-                imgV.setRotationX(orient[1]);
-                imgV.setRotationY(orient[2]);
+                txt.setText("X:"+String.valueOf((int)orient[2]));
+                txt2.setText("Y:"+String.valueOf((int)orient[1]));
+                imgV.setRotationY(orient[1]);
+                imgV.setRotationX(orient[2]);
             }
             @Override
             public void onAccuracyChanged(Sensor sensor, int i) {}
